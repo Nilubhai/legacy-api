@@ -1,7 +1,7 @@
-export default function handler(req, res) {
+module.exports = (req, res) => {
   const users = [
     { email: "john@example.com", password: "Password123!" },
-    { email: "jane@example.com", password: "Test@123" },
+    { email: "jane@example.com", password: "Test@123" }
   ];
 
   if (req.method !== "POST") {
@@ -9,7 +9,6 @@ export default function handler(req, res) {
   }
 
   const { email, password } = req.body || {};
-
   const user = users.find(u => u.email === email && u.password === password);
 
   if (user) {
@@ -17,4 +16,4 @@ export default function handler(req, res) {
   } else {
     res.status(401).json({ message: "Invalid credentials" });
   }
-}
+};
